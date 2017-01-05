@@ -3,7 +3,10 @@
 
 var express = require('express');
 var ParseServer = require('parse-server').ParseServer;
+var ParseDashboard = require('parse-dashboard');
 var path = require('path');
+
+var allowInsecureHTTP = false
 
 var databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
 
@@ -25,10 +28,25 @@ var api = new ParseServer({
 // If you wish you require them, you can set them as options in the initialization above:
 // javascriptKey, restAPIKey, dotNetKey, clientKey
 
+var dashboard = new ParseDashboard({
+    // Parse Dashboard settings
+    "apps": [
+    {
+      "serverURL": "http://localhost:1337/parse",
+      "appId": "myAppId",
+      "masterKey": "",
+      "appName": "MyFirstApp"
+    }
+  ]
+}, allowInsecureHTTP);
+
 var app = express();
 
 // Serve static assets from the /public folder
 app.use('/public', express.static(path.join(__dirname, '/public')));
+
+// make the Parse Dashboard available at /dashboard
+app.use('/dashboard', dashboard);
 
 // Serve the Parse API on the /parse URL prefix
 var mountPath = process.env.PARSE_MOUNT || '/parse';
