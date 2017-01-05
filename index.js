@@ -3,7 +3,7 @@
 
 var express = require('express');
 var ParseServer = require('parse-server').ParseServer;
-var ParseDashboard = require('parse-dashboard');
+// var ParseDashboard = require('parse-dashboard');
 var path = require('path');
 
 var allowInsecureHTTP = false
@@ -28,17 +28,17 @@ var api = new ParseServer({
 // If you wish you require them, you can set them as options in the initialization above:
 // javascriptKey, restAPIKey, dotNetKey, clientKey
 
-var dashboard = new ParseDashboard({
-    // Parse Dashboard settings
-    "apps": [
-      {
-        "serverURL": process.env.SERVER_URL || 'http://localhost:1337/parse',
-        "appId": process.env.APP_ID || 'myAppId',
-        "masterKey": process.env.MASTER_KEY || '',
-        "appName": "MyFirstApp"
-      }
-    ]
-}, allowInsecureHTTP);
+// var dashboard = new ParseDashboard({
+//     // Parse Dashboard settings
+//     "apps": [
+//       {
+//         "serverURL": process.env.SERVER_URL || 'http://localhost:1337/parse',
+//         "appId": process.env.APP_ID || 'myAppId',
+//         "masterKey": process.env.MASTER_KEY || '',
+//         "appName": "MyFirstApp"
+//       }
+//     ]
+// }, allowInsecureHTTP);
 
 var app = express();
 
@@ -46,7 +46,7 @@ var app = express();
 app.use('/public', express.static(path.join(__dirname, '/public')));
 
 // make the Parse Dashboard available at /dashboard
-app.use('/dashboard', dashboard);
+// app.use('/dashboard', dashboard);
 
 // Serve the Parse API on the /parse URL prefix
 var mountPath = process.env.PARSE_MOUNT || '/parse';
