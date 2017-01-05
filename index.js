@@ -28,25 +28,25 @@ var api = new ParseServer({
 // If you wish you require them, you can set them as options in the initialization above:
 // javascriptKey, restAPIKey, dotNetKey, clientKey
 
-var dashboard = new ParseDashboard({
-    // Parse Dashboard settings
-    "apps": [
-      {
-        "serverURL": process.env.SERVER_URL || 'http://localhost:1337/parse',
-        "appId": process.env.APP_ID || 'myAppId',
-        "masterKey": process.env.MASTER_KEY || '',
-        "javascriptKey": "NOT USED",
-        "restKey": "NOT USED",
-        "appName": "MyFirstApp"
-      }
-    ],
-    "users": [
-    {
-      "user":"demo", // Used to log in to your Parse Dashboard
-      "pass":"123"
-    }
-  ]
-}, allowInsecureHTTP);
+// var dashboard = new ParseDashboard({
+//     // Parse Dashboard settings
+//     "apps": [
+//       {
+//         "serverURL": process.env.SERVER_URL || 'http://localhost:1337/parse',
+//         "appId": process.env.APP_ID || 'myAppId',
+//         "masterKey": process.env.MASTER_KEY || '',
+//         "javascriptKey": "NOT USED",
+//         "restKey": "NOT USED",
+//         "appName": "MyFirstApp"
+//       }
+//     ],
+//     "users": [
+//     {
+//       "user":"demo", // Used to log in to your Parse Dashboard
+//       "pass":"123"
+//     }
+//   ]
+// }, allowInsecureHTTP);
 
 var app = express();
 
@@ -54,7 +54,7 @@ var app = express();
 app.use('/public', express.static(path.join(__dirname, '/public')));
 
 // make the Parse Dashboard available at /dashboard
-app.use('/dashboard', dashboard);
+// app.use('/dashboard', dashboard);
 
 // Serve the Parse API on the /parse URL prefix
 var mountPath = process.env.PARSE_MOUNT || '/parse';
