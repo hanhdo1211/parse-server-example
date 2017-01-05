@@ -31,13 +31,13 @@ var api = new ParseServer({
 var dashboard = new ParseDashboard({
     // Parse Dashboard settings
     "apps": [
-    {
-      "serverURL": "http://localhost:1337/parse",
-      "appId": "myAppId",
-      "masterKey": "",
-      "appName": "MyFirstApp"
-    }
-  ]
+      {
+        "serverURL": process.env.SERVER_URL || 'http://localhost:1337/parse',
+        "appId": process.env.APP_ID || 'myAppId',
+        "masterKey": process.env.MASTER_KEY || '',
+        "appName": "MyFirstApp"
+      }
+    ]
 }, allowInsecureHTTP);
 
 var app = express();
